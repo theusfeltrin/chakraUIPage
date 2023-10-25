@@ -1,5 +1,5 @@
 import { Center, Input, Box } from "@chakra-ui/react";
-import { login } from "../services/login";
+import { welcome } from "../services/welcome";
 import { CustomButton } from "./CustomButton";
 
 export const Card = () => {
@@ -11,7 +11,7 @@ export const Card = () => {
       <Input placeholder="email" />
       <Input placeholder="password" />
       <Center>
-        <CustomButton onClick={login} text="Login" />
+        <CustomButton onClick={welcome} text="Login" />
       </Center>
     </Box>
   );

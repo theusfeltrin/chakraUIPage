@@ -6,7 +6,7 @@ type HeaderProps = {
 
 export const Header = ({ title }: HeaderProps) => {
   return (
-    <Flex width="full" justifyContent="flex-start">
+    <Flex width="full" justifyContent="flex-start" padding="15px">
       <h3>{title}</h3>
     </Flex>
   );
