@@ -1,4 +1,4 @@
-import { Center, Input, Box } from "@chakra-ui/react";
+import { Center, Input, Box, Flex } from "@chakra-ui/react";
 import { welcome } from "../services/welcome";
 import { CustomButton } from "./CustomButton";
 
@@ -8,8 +8,10 @@ export const Card = () => {
       <Center>
         <h1>Faça o login</h1>
       </Center>
-      <Input placeholder="email" />
-      <Input placeholder="password" />
+      <Flex flexDirection="column" width="full">
+        <Input placeholder="email" marginTop="15px" />
+        <Input placeholder="password" marginTop="15px" />
+      </Flex>
       <Center>
         <CustomButton onClick={welcome} text="Login" />
       </Center>
