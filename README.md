@@ -29,7 +29,7 @@ desenvolvido por [Matheus T. Feltrin](https://github.com/theusfeltrin)
   - Crie o teste unitário da função
 
 #### Desafios - 3
-[ ] Incluir validação da senha no campo de login
+[x] Incluir validação da senha no campo de login
   - Para logar, além do email faça a validação com a senha informada pelo usuário.
   - Durante a implementação, aplique o TDD e escreva os testes unitários para a nova validação
 
