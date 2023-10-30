@@ -1,19 +1,21 @@
+import { UserData } from "../types/userData";
+
 interface IDIoBank {
-    login: boolean;
+  userData: UserData | null;
 }
 
-const dioBank = {
-    login: false
-}
+const chakraUser = {
+  userData: null,
+};
 
-export const getAllLocalStorage = (): string | null  => {
-    return localStorage.getItem('diobank')
-}
+export const getAllLocalStorage = (): string | null => {
+  return localStorage.getItem("chakraUser");
+};
 
 export const createLocalStorage = (): void => {
-    localStorage.setItem('diobank', JSON.stringify(dioBank))
-}
+  localStorage.setItem("chakraUser", JSON.stringify(chakraUser));
+};
 
-export const changeLocalStorage = (dioBank: IDIoBank): void => {
-    localStorage.setItem('diobank', JSON.stringify(dioBank))
-}
+export const changeLocalStorage = (chakraUser: IDIoBank): void => {
+  localStorage.setItem("chakraUser", JSON.stringify(chakraUser));
+};

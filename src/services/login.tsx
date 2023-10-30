@@ -1,6 +1,8 @@
 import { api } from "../api";
+import { UserData } from "../types/userData";
+import { changeLocalStorage } from "./storage";
 
-type loginInput = {
+type LoginInput = {
   email: string;
   password: string;
 };
@@ -8,8 +10,8 @@ type loginInput = {
 export const login = async ({
   email,
   password,
-}: loginInput): Promise<boolean> => {
-  const data: any = await api;
+}: LoginInput): Promise<boolean> => {
+  const data: any | UserData = await api;
 
   if (email !== data.email) {
     return false;
@@ -17,6 +19,8 @@ export const login = async ({
   if (password !== data.password) {
     return false;
   }
+
+  changeLocalStorage({ userData: data });
 
   return true;
 };

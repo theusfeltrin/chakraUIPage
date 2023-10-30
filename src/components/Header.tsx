@@ -13,7 +13,7 @@ export const Header = ({ title }: HeaderProps) => {
   const navigate = useNavigate();
 
   const logout = () => {
-    changeLocalStorage({ login: false });
+    changeLocalStorage({ userData: null });
     setIsLoggedIn(false);
     navigate("/");
   };

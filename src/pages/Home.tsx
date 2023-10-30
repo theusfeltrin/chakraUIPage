@@ -2,12 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { LoginForm } from "../components/LoginForm";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
+import { Flex } from "@chakra-ui/react";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AppContext);
+  const { userData } = useContext(AppContext);
 
-  isLoggedIn && navigate("/infoconta");
+  userData && navigate("/conta");
 
   return <LoginForm />;
 };

@@ -1,45 +1,54 @@
-import { Center, Input, Box, Flex } from "@chakra-ui/react";
+import { Center, Input, Box, Flex, Text } from "@chakra-ui/react";
 import { CustomButton } from "./CustomButton";
 import { login } from "../services/login";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../contexts/AppContext";
-import { changeLocalStorage } from "../services/storage";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const { setIsLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
 
   const validateUser = async () => {
-    const loggedIn = await login(email);
+    const loggedIn = await login({ email, password });
 
     if (!loggedIn) {
       return alert("Email inválido");
     }
 
     setIsLoggedIn(true);
-    changeLocalStorage({ login: true });
-    navigate("/conta/1");
+    navigate("/conta");
   };
 
   return (
-    <Box backgroundColor="#FFFFFF" borderRadius="25px" padding="15px">
+    <Box
+      backgroundColor="#FFFFFF"
+      borderRadius="25px"
+      padding="25px 20px"
+      width="50%"
+      height="50%"
+    >
       <Center>
-        <h1>Faça o login</h1>
+        <Text fontSize="3xl">Faça o login</Text>
       </Center>
       <Flex flexDirection="column" width="full">
         <Input
           placeholder="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          marginTop="15px"
+          marginTop="25px"
         />
-        <Input placeholder="password" marginTop="15px" />
-      </Flex>
-      <Center>
+        <Input
+          placeholder="password"
+          marginTop="25px"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          type="password"
+        />
         <CustomButton onClick={() => validateUser()} text="Login" />
-      </Center>
+      </Flex>
     </Box>
   );
 };

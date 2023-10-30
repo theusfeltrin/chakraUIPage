@@ -12,7 +12,7 @@ export const CustomButton = ({ text, onClick }: CustomButtonProps) => {
       colorScheme="teal"
       size="sm"
       width="100%"
-      marginTop="15px"
+      marginTop="20px"
     >
       {text}
     </Button>

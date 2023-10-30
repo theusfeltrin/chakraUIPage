@@ -1,60 +1,31 @@
-import { Center, SimpleGrid, Spinner } from "@chakra-ui/react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { api } from "../api";
+import { Flex, Center, Spinner } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import CardInfo from "../components/CardInfo";
 
-interface UserData {
-  email: string;
-  password: string;
-  name: string;
-  balance: number;
-  id: string;
-}
-
 const Conta = () => {
-  const [userData, setUserData] = useState<null | UserData>();
-  const { id } = useParams();
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, userData } = useContext(AppContext);
 
   !isLoggedIn && navigate("/");
 
-  useEffect(() => {
-    const getData = async () => {
-      const data: any | UserData = await api;
-      setUserData(data);
-    };
-
-    getData();
-  }, []);
-
   const actualData = new Date();
-
-  if (userData && id !== userData.id) {
-    navigate("/");
-  }
+  const dataString = `${actualData.getDay()} / ${actualData.getMonth()} / ${actualData.getFullYear()} ${actualData.getHours()}:${actualData.getMinutes()}`;
 
   return (
-    <Center>
-      <SimpleGrid columns={2} spacing={8} paddingTop={16}>
-        {userData === undefined || userData === null ? (
-          <Center>
-            <Spinner size="xl" color="white" />
-          </Center>
-        ) : (
-          <>
-            <CardInfo
-              mainContent={`Bem vinda ${userData?.name}`}
-              content={`${actualData.getDay()} / ${actualData.getMonth()} / ${actualData.getFullYear()} ${actualData.getHours()}:${actualData.getMinutes()}`}
-            />
-            <CardInfo mainContent="Saldo" content={`R$ ${userData.balance}`} />
-          </>
-        )}
-      </SimpleGrid>
-    </Center>
+    <Flex width="full" height="full">
+      {userData === null ? (
+        <Center width="full" height="full">
+          <Spinner size="xl" color="white" />
+        </Center>
+      ) : (
+        <Center width="full" height="full">
+          <CardInfo userData={userData} actualDate={dataString} />
+        </Center>
+      )}
+    </Flex>
   );
 };
 
